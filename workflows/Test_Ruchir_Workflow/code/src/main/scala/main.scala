@@ -1,3 +1,4 @@
+import org.apache.spark.sql.types._
 import io.prophecy.libs._
 import io.prophecy.libs.UDFUtils._
 import io.prophecy.libs.Component._
@@ -8,7 +9,6 @@ import org.apache.spark.sql.ProphecyDataFrame._
 import org.apache.spark._
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.types._
 import config.ConfigStore._
 
 import graph._
@@ -18,8 +18,9 @@ object Main {
 
   def graph(spark: SparkSession): Unit = {
 
-    val df_Source0:   Source   = Source0(spark)
-    val df_Reformat0: Reformat = Reformat0(spark, df_Source0)
+    val df_Source0:       Source       = Source0(spark)
+    val df_SQLStatement0: SQLStatement = SQLStatement0(spark)
+    val df_Reformat0:     Reformat     = Reformat0(spark, df_SQLStatement0)
 
   }
 

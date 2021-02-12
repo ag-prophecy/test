@@ -9,8 +9,28 @@
         },
         "metadata" : {
           "label" : "Source0",
-          "x" : 72,
-          "y" : 52
+          "x" : 170,
+          "y" : 50
+        },
+        "ports" : {
+          "inputs" : [ ],
+          "outputs" : [ "out" ]
+        },
+        "lineage" : ""
+      },
+      "SQLStatement0" : {
+        "component" : "SQLStatement",
+        "properties" : {
+          "interim" : false,
+          "cache" : false,
+          "sql" : {
+            "out" : "select * from in0"
+          }
+        },
+        "metadata" : {
+          "label" : "SQLStatement0",
+          "x" : 290,
+          "y" : 50
         },
         "ports" : {
           "inputs" : [ ],
@@ -27,7 +47,7 @@
         },
         "metadata" : {
           "label" : "Reformat0",
-          "x" : 290,
+          "x" : 410,
           "y" : 50
         },
         "ports" : {
@@ -39,7 +59,7 @@
     },
     "connections" : [ {
       "src" : {
-        "process" : "Source0",
+        "process" : "SQLStatement0",
         "port" : "out"
       },
       "tgt" : {
@@ -47,14 +67,14 @@
         "port" : "in"
       },
       "metadata" : {
-        "route" : "e_ryqD99XWO"
+        "route" : "e_SyYxe97b_"
       },
       "lineage" : ""
     } ],
     "groups" : [ ],
     "locked" : false,
     "metainfo" : {
-      "lastUpdated" : 1613109859196,
+      "lastUpdated" : 1613114155020,
       "id" : "TestRuchirWorkflow",
       "memory" : 1,
       "imported" : true,
