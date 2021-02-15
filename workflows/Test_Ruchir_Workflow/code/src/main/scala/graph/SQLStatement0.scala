@@ -15,7 +15,7 @@ import config.ConfigStore._
 import udfs.UDFs._
 import graph._
 
-@Visual(id = "SQLStatement0", label = "SQLStatement0", x = 290, y = 50, phase = 0)
+@Visual(id = "SQLStatement0", label = "SQLStatement0", x = 292, y = 227, phase = 0)
 object SQLStatement0 {
 
   def apply(spark: SparkSession): SQLStatement = {
