@@ -12,6 +12,7 @@ import org.apache.spark._
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
 import config.ConfigStore._
+import udfs.UDFs._
 import graph._
 
 @Visual(id = "SQLStatement0", label = "SQLStatement0", x = 290, y = 50, phase = 0)

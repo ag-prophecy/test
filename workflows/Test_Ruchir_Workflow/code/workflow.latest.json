@@ -3,6 +3,7 @@
     "processes" : {
       "Source0" : {
         "component" : "Source",
+        "group" : null,
         "properties" : {
           "interim" : false,
           "cache" : false
@@ -20,6 +21,7 @@
       },
       "SQLStatement0" : {
         "component" : "SQLStatement",
+        "group" : null,
         "properties" : {
           "interim" : false,
           "cache" : false,
@@ -40,10 +42,12 @@
       },
       "Reformat0" : {
         "component" : "Reformat",
+        "group" : null,
         "properties" : {
           "interim" : true,
           "cache" : false,
-          "functions" : [ ]
+          "functions" : [ ],
+          "detailedStats" : true
         },
         "metadata" : {
           "label" : "Reformat0",
@@ -74,7 +78,7 @@
     "groups" : [ ],
     "locked" : false,
     "metainfo" : {
-      "lastUpdated" : 1613114155020,
+      "lastUpdated" : 1613361955043,
       "id" : "TestRuchirWorkflow",
       "memory" : 1,
       "imported" : true,
