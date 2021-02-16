@@ -1,16 +1,305 @@
 {
   "graph" : {
     "processes" : {
+      "Target1" : {
+        "component" : "Target",
+        "group" : null,
+        "properties" : {
+          "src_desc" : "",
+          "phase" : 5,
+          "ramp" : 0,
+          "version" : 0,
+          "id" : "280",
+          "udf_definitions" : [ ],
+          "limit" : 0
+        },
+        "metadata" : {
+          "label" : "Target1",
+          "x" : 768,
+          "y" : 78
+        },
+        "ports" : {
+          "inputs" : [ "in" ],
+          "outputs" : [ ]
+        },
+        "lineage" : ""
+      },
+      "Script0" : {
+        "component" : "Script",
+        "group" : null,
+        "properties" : {
+          "format" : "scala",
+          "src_desc" : "",
+          "phase" : 0,
+          "ramp" : 0,
+          "code" : "val out0 = spark.range(10 * 1000 * 1000).select(lit(0).as(\"a\"))\n",
+          "udf_definitions" : [ ],
+          "limit" : 0
+        },
+        "metadata" : {
+          "label" : "Script0",
+          "x" : 73,
+          "y" : 371
+        },
+        "ports" : {
+          "inputs" : [ ],
+          "outputs" : [ "out0" ]
+        },
+        "lineage" : ""
+      },
+      "Deduplicate0" : {
+        "component" : "Deduplicate",
+        "group" : null,
+        "properties" : {
+          "src_desc" : "",
+          "phase" : 5,
+          "keep" : "any",
+          "ramp" : 0,
+          "udf_definitions" : [ ],
+          "limit" : 0,
+          "keys" : [ "disease" ]
+        },
+        "metadata" : {
+          "label" : "Deduplicate0",
+          "x" : 536,
+          "y" : 78
+        },
+        "ports" : {
+          "inputs" : [ "in" ],
+          "outputs" : [ "out" ]
+        },
+        "lineage" : ""
+      },
+      "Reformat1" : {
+        "component" : "Reformat",
+        "group" : null,
+        "properties" : {
+          "src_desc" : "",
+          "phase" : 2,
+          "ramp" : 0,
+          "udf_definitions" : [ ],
+          "functions" : [ {
+            "addReplaceColumn" : "list_type_cd",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"list_type_cd\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          }, {
+            "addReplaceColumn" : "new_column",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "concat(col(\"list_id\"), col(\"list_id\"))"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          } ],
+          "limit" : 0
+        },
+        "metadata" : {
+          "label" : "Reformat1",
+          "x" : 775,
+          "y" : 354
+        },
+        "ports" : {
+          "inputs" : [ "in" ],
+          "outputs" : [ "out" ]
+        },
+        "lineage" : ""
+      },
+      "Reformat3" : {
+        "component" : "Reformat",
+        "group" : null,
+        "properties" : {
+          "src_desc" : "",
+          "phase" : 5,
+          "ramp" : 0,
+          "udf_definitions" : [ ],
+          "functions" : [ {
+            "addReplaceColumn" : "disease",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"disease\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          }, {
+            "addReplaceColumn" : "thrptc_sub_class",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"thrptc_sub_class\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          }, {
+            "addReplaceColumn" : "thrptc_class",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"thrptc_class\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          }, {
+            "addReplaceColumn" : "lvl",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"lvl\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          }, {
+            "addReplaceColumn" : "intvn_cd",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"intvn_cd\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          }, {
+            "addReplaceColumn" : "idntfn_cd",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"idntfn_cd\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          }, {
+            "addReplaceColumn" : "list_vers_nbr",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"list_vers_nbr\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          }, {
+            "addReplaceColumn" : "list_type_cd",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"list_type_cd\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          } ],
+          "limit" : 0
+        },
+        "metadata" : {
+          "label" : "Reformat3",
+          "x" : 302,
+          "y" : 99
+        },
+        "ports" : {
+          "inputs" : [ "in" ],
+          "outputs" : [ "out" ]
+        },
+        "lineage" : ""
+      },
+      "Reformat5" : {
+        "component" : "Reformat",
+        "group" : null,
+        "properties" : {
+          "src_desc" : "",
+          "phase" : 0,
+          "ramp" : 0,
+          "udf_definitions" : [ ],
+          "functions" : [ ],
+          "limit" : 0
+        },
+        "metadata" : {
+          "label" : "Reformat5",
+          "x" : 304,
+          "y" : 371
+        },
+        "ports" : {
+          "inputs" : [ "in" ],
+          "outputs" : [ "out" ]
+        },
+        "lineage" : ""
+      },
+      "Reformat01" : {
+        "component" : "Reformat",
+        "group" : null,
+        "properties" : {
+          "src_desc" : "",
+          "phase" : 2,
+          "ramp" : 0,
+          "udf_definitions" : [ ],
+          "functions" : [ {
+            "addReplaceColumn" : "list_type_cd",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"list_type_cd\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          }, {
+            "addReplaceColumn" : "idntfn_cd",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"idntfn_cd\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          }, {
+            "addReplaceColumn" : "intvn_cd",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"intvn_cd\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          }, {
+            "addReplaceColumn" : "lvl",
+            "functionName" : "column_expression",
+            "inputArgs" : [ {
+              "type" : "scala",
+              "expr" : "col(\"lvl\")"
+            } ],
+            "comment" : null,
+            "enabled" : true
+          } ],
+          "limit" : 0
+        },
+        "metadata" : {
+          "label" : "Reformat01",
+          "x" : 304,
+          "y" : 235
+        },
+        "ports" : {
+          "inputs" : [ "in" ],
+          "outputs" : [ "out" ]
+        },
+        "lineage" : ""
+      },
       "Source0" : {
         "component" : "Source",
+        "group" : null,
         "properties" : {
-          "interim" : false,
-          "cache" : false
+          "src_desc" : "",
+          "phase" : 2,
+          "ramp" : 0,
+          "version" : 0,
+          "id" : "278",
+          "udf_definitions" : [ ],
+          "limit" : 0
         },
         "metadata" : {
           "label" : "Source0",
-          "x" : 170,
-          "y" : 50
+          "x" : 73,
+          "y" : 235
         },
         "ports" : {
           "inputs" : [ ],
@@ -18,54 +307,64 @@
         },
         "lineage" : ""
       },
-      "OrderBy0" : {
-        "component" : "OrderBy",
+      "Source1" : {
+        "component" : "Source",
+        "group" : null,
         "properties" : {
-          "interim" : false,
-          "cache" : false,
-          "columns" : [ ]
+          "src_desc" : "",
+          "phase" : 5,
+          "ramp" : 0,
+          "version" : 0,
+          "id" : "278",
+          "udf_definitions" : [ ],
+          "limit" : 0
         },
         "metadata" : {
-          "label" : "OrderBy0",
-          "x" : 585,
-          "y" : 132
+          "label" : "Source1",
+          "x" : 73,
+          "y" : 78
         },
         "ports" : {
-          "inputs" : [ "in" ],
+          "inputs" : [ ],
           "outputs" : [ "out" ]
         },
         "lineage" : ""
       },
-      "OrderBy1" : {
-        "component" : "OrderBy",
+      "Target0" : {
+        "component" : "Target",
+        "group" : null,
         "properties" : {
-          "interim" : false,
-          "cache" : false,
-          "columns" : [ ]
+          "src_desc" : "",
+          "phase" : 2,
+          "ramp" : 0,
+          "version" : 0,
+          "id" : "279",
+          "udf_definitions" : [ ],
+          "limit" : 0
         },
         "metadata" : {
-          "label" : "OrderBy1",
-          "x" : 497,
-          "y" : 341
+          "label" : "Target0",
+          "x" : 999,
+          "y" : 235
         },
         "ports" : {
           "inputs" : [ "in" ],
-          "outputs" : [ "out" ]
+          "outputs" : [ ]
         },
         "lineage" : ""
       }
     },
     "connections" : [ {
       "src" : {
-        "process" : "Source0",
-        "port" : "out"
+        "process" : "Script0",
+        "port" : "out0"
       },
       "tgt" : {
-        "process" : "OrderBy0",
+        "process" : "Reformat5",
         "port" : "in"
       },
       "metadata" : {
-        "route" : "e_HyXbk5DWu"
+        "route" : "e1"
       },
       "lineage" : ""
     }, {
@@ -74,18 +373,271 @@
         "port" : "out"
       },
       "tgt" : {
-        "process" : "OrderBy1",
+        "process" : "Reformat01",
         "port" : "in"
       },
       "metadata" : {
-        "route" : "e_BJt$JcP$d"
+        "route" : "e2"
+      },
+      "lineage" : ""
+    }, {
+      "src" : {
+        "process" : "Reformat01",
+        "port" : "out"
+      },
+      "tgt" : {
+        "process" : "SubGraph0",
+        "port" : "in"
+      },
+      "metadata" : {
+        "route" : "e3"
+      },
+      "lineage" : ""
+    }, {
+      "src" : {
+        "process" : "SubGraph0",
+        "port" : "out"
+      },
+      "tgt" : {
+        "process" : "Reformat1",
+        "port" : "in"
+      },
+      "metadata" : {
+        "route" : "e4"
+      },
+      "lineage" : ""
+    }, {
+      "src" : {
+        "process" : "Reformat1",
+        "port" : "out"
+      },
+      "tgt" : {
+        "process" : "Target0",
+        "port" : "in"
+      },
+      "metadata" : {
+        "route" : "e5"
+      },
+      "lineage" : ""
+    }, {
+      "src" : {
+        "process" : "Source1",
+        "port" : "out"
+      },
+      "tgt" : {
+        "process" : "Reformat3",
+        "port" : "in"
+      },
+      "metadata" : {
+        "route" : "e6"
+      },
+      "lineage" : ""
+    }, {
+      "src" : {
+        "process" : "Reformat3",
+        "port" : "out"
+      },
+      "tgt" : {
+        "process" : "Deduplicate0",
+        "port" : "in"
+      },
+      "metadata" : {
+        "route" : "e7"
+      },
+      "lineage" : ""
+    }, {
+      "src" : {
+        "process" : "Deduplicate0",
+        "port" : "out"
+      },
+      "tgt" : {
+        "process" : "Target1",
+        "port" : "in"
+      },
+      "metadata" : {
+        "route" : "e8"
       },
       "lineage" : ""
     } ],
-    "groups" : [ ],
+    "groups" : [ {
+      "alias" : "SubGraph0",
+      "component" : "SubGraph",
+      "name" : "SubGraph0",
+      "graph" : {
+        "processes" : {
+          "Reformat2" : {
+            "component" : "Reformat",
+            "group" : "SubGraph0",
+            "properties" : {
+              "src_desc" : "",
+              "phase" : 0,
+              "ramp" : 0,
+              "udf_definitions" : [ ],
+              "functions" : [ {
+                "addReplaceColumn" : "list_type_cd",
+                "functionName" : "column_expression",
+                "inputArgs" : [ {
+                  "type" : "scala",
+                  "expr" : "col(\"list_type_cd\")"
+                } ],
+                "comment" : null,
+                "enabled" : true
+              }, {
+                "addReplaceColumn" : "idntfn_cd",
+                "functionName" : "column_expression",
+                "inputArgs" : [ {
+                  "type" : "scala",
+                  "expr" : "col(\"idntfn_cd\")"
+                } ],
+                "comment" : null,
+                "enabled" : true
+              }, {
+                "addReplaceColumn" : "intvn_cd",
+                "functionName" : "column_expression",
+                "inputArgs" : [ {
+                  "type" : "scala",
+                  "expr" : "col(\"intvn_cd\")"
+                } ],
+                "comment" : null,
+                "enabled" : true
+              }, {
+                "addReplaceColumn" : "lvl",
+                "functionName" : "column_expression",
+                "inputArgs" : [ {
+                  "type" : "scala",
+                  "expr" : "col(\"lvl\")"
+                } ],
+                "comment" : null,
+                "enabled" : true
+              } ],
+              "limit" : 0
+            },
+            "metadata" : {
+              "label" : "Reformat2",
+              "x" : 504,
+              "y" : 383
+            },
+            "ports" : {
+              "inputs" : [ "in" ],
+              "outputs" : [ "out" ]
+            },
+            "lineage" : ""
+          },
+          "Reformat4" : {
+            "component" : "Reformat",
+            "group" : "SubGraph0",
+            "properties" : {
+              "src_desc" : "",
+              "phase" : 0,
+              "ramp" : 0,
+              "udf_definitions" : [ ],
+              "functions" : [ {
+                "addReplaceColumn" : "list_type_cd",
+                "functionName" : "column_expression",
+                "inputArgs" : [ {
+                  "type" : "scala",
+                  "expr" : "col(\"list_type_cd\")"
+                } ],
+                "comment" : null,
+                "enabled" : true
+              }, {
+                "addReplaceColumn" : "idntfn_cd",
+                "functionName" : "column_expression",
+                "inputArgs" : [ {
+                  "type" : "scala",
+                  "expr" : "col(\"idntfn_cd\")"
+                } ],
+                "comment" : null,
+                "enabled" : true
+              } ],
+              "limit" : 0
+            },
+            "metadata" : {
+              "label" : "Reformat4",
+              "x" : 877,
+              "y" : 386
+            },
+            "ports" : {
+              "inputs" : [ "in" ],
+              "outputs" : [ "out" ]
+            },
+            "lineage" : ""
+          }
+        },
+        "connections" : [ {
+          "src" : {
+            "process" : "SubGraph0",
+            "port" : "in"
+          },
+          "tgt" : {
+            "process" : "Reformat2",
+            "port" : "in"
+          },
+          "metadata" : {
+            "route" : "e9"
+          },
+          "lineage" : ""
+        }, {
+          "src" : {
+            "process" : "Reformat2",
+            "port" : "out"
+          },
+          "tgt" : {
+            "process" : "Reformat4",
+            "port" : "in"
+          },
+          "metadata" : {
+            "route" : "e10"
+          },
+          "lineage" : ""
+        }, {
+          "src" : {
+            "process" : "Reformat4",
+            "port" : "out"
+          },
+          "tgt" : {
+            "process" : "SubGraph0",
+            "port" : "out"
+          },
+          "metadata" : {
+            "route" : "e12"
+          },
+          "lineage" : ""
+        } ],
+        "groups" : [ ],
+        "locked" : false,
+        "metainfo" : {
+          "lastUpdated" : null,
+          "id" : "SubGraph0",
+          "memory" : 1,
+          "imported" : true,
+          "language" : "scala",
+          "processors" : 1,
+          "cluster" : "local",
+          "mode" : "batch",
+          "interimMode" : "disabled",
+          "udfs" : null
+        },
+        "inports" : { },
+        "outports" : { }
+      },
+      "metadata" : {
+        "label" : "SubGraph0",
+        "x" : 544,
+        "y" : 285
+      },
+      "properties" : {
+        "phase" : 2
+      },
+      "group" : null,
+      "ports" : {
+        "inputs" : [ "in" ],
+        "outputs" : [ "out" ]
+      }
+    } ],
     "locked" : false,
     "metainfo" : {
-      "lastUpdated" : 1613369099692,
+      "lastUpdated" : 1613463365311,
       "id" : "test101",
       "memory" : 1,
       "imported" : true,
